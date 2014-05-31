@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/black"
+    android:orientation="vertical" >
+
+    <WebView
+        android:id="@+id/description_webview"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/bottom_bar_height"
+        android:background="@drawable/grain_thin" >
+
+        <ImageView
+            android:layout_width="@dimen/bottom_bar_icon_size"
+            android:layout_height="@dimen/bottom_bar_icon_size"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/refresh_button"
+            android:contentDescription="@string/image_description"
+            android:onClick="onClickBack"
+            android:src="@drawable/bottom_bar_back" />
+
+        <ImageView
+            android:id="@id/refresh_button"
+            android:layout_width="@dimen/bottom_bar_icon_size"
+            android:layout_height="@dimen/bottom_bar_icon_size"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:contentDescription="@string/image_description"
+            android:onClick="onClickRefresh"
+            android:src="@drawable/bottom_bar_refresh" />
+
+        <ImageView
+            android:id="@+id/bottom_bar_item_image"
+            android:layout_width="@dimen/bottom_bar_icon_size"
+            android:layout_height="@dimen/bottom_bar_icon_size"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/refresh_button"
+            android:contentDescription="@string/image_description"
+            android:onClick="onClickForward"
+            android:src="@drawable/bottom_bar_forward" />
+    </RelativeLayout>
+
+</LinearLayout>

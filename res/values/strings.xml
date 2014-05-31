@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Deep Sky Assistant</string>
+    <string name="checkbox_ocl">OCl</string>
+    <string name="checkbox_gcl">GCl</string>
+    <string name="checkbox_brn">BrN</string>
+    <string name="checkbox_pln">PlN</string>
+    <string name="checkbox_glx">Gal</string>
+    <string name="checkbox_dbl">Str</string>
+    <string name="menu_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_deep_sky_assistant">Deep Sky Assistant</string>
+    <string name="btn_generate_label">Generate</string>
+    <string name="btn_load_label">Load</string>
+    <string name="btn_update_label">Upload</string>
+    <string name="btn_get_location_label">Current Location</string>
+    <string name="btn_internet">Online Update</string>
+    <string name="edit_longitude">Longitude:</string>
+    <string name="edit_latitude">Latitude:</string>
+    <string name="edit_altitude">Altitude:</string>
+    <string name="edit_magnitude">Magnitude Limit:</string>
+    <string name="edit_database">Database:</string>
+    <string name="edit_date">Date</string>
+    <string name="edit_starttime">Start Time</string>
+    <string name="edit_endtime">End Time</string>
+    <string name="edit_timezone">Time Zone:</string>
+    <string name="edit_timezone_b">hrs from GMT</string>
+    <string name="north">N</string>
+    <string name="south">S</string>
+    <string name="east">E</string>
+    <string name="west">W</string>
+    <string name="sample_result_title">Target</string>
+    <string name="sample_result_text">Target Info</string>
+    <string name="basic_info">Basic Information</string>
+    <string name="view_info">Visibility</string>
+    <string name="btn_wiki">Wikipedia</string>
+    <string name="btn_more_info">Description</string>
+    <string name="btn_share_it">Share</string>
+    <string name="btn_save_list">Save</string>
+    <string name="btn_email_list">Email</string>
+    <string name="title_activity_renren">上传人人</string>
+    <string name="image_description">none</string>
+    <string name="btn_remove_list">Remove</string>
+    <string name="title_wait">Please Wait&#8230;</string>
+    <string name="text_location_updating">Updating&#8230;</string>
+    <string name="text_processing">Processing&#8230;</string>
+
+</resources>

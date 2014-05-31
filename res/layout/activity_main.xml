@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/padding_large"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_small" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/padding_small"
+            android:text="@string/edit_longitude"
+            android:textColor="@color/near_white"
+            android:textSize="@dimen/font_medium" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/no_view"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal" />
+
+            <EditText
+                android:id="@+id/edit_longitude"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="numberDecimal" >
+            </EditText>
+
+            <RadioGroup
+                android:id="@+id/radioGroup_longitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_small"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio_east"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/east" />
+
+                <RadioButton
+                    android:id="@+id/radio_west"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_small"
+                    android:text="@string/west" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/padding_small"
+            android:text="@string/edit_latitude"
+            android:textColor="@color/near_white"
+            android:textSize="@dimen/font_medium" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@id/no_view"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal" />
+
+            <EditText
+                android:id="@+id/edit_latitude"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="numberDecimal" >
+            </EditText>
+
+            <RadioGroup
+                android:id="@+id/radioGroup_latitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_small"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio_north"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/north" />
+
+                <RadioButton
+                    android:id="@+id/radio_south"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_small"
+                    android:text="@string/south" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/padding_small"
+            android:text="@string/edit_timezone"
+            android:textColor="@color/near_white"
+            android:textSize="@dimen/font_medium" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_medium"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@id/no_view"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal" />
+
+            <EditText
+                android:id="@+id/edit_timezone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.43"
+                android:ems="10"
+                android:inputType="numberSigned|numberDecimal" >
+            </EditText>
+
+            <TextView
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/padding_small"
+                android:text="@string/edit_timezone_b"
+                android:textColor="@color/near_white"
+                android:textSize="@dimen/font_size_2" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onClickLocation"
+                android:text="@string/btn_get_location_label"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_small"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/pick_date"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:onClick="onClickPickDate"
+                android:text="@string/edit_date" />
+
+            <EditText
+                android:id="@+id/show_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_small"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/pick_starttime"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:onClick="onClickPickStartTime"
+                android:text="@string/edit_starttime" />
+
+            <EditText
+                android:id="@+id/show_starttime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="time" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_small"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/pick_endtime"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:onClick="onClickPickEndTime"
+                android:text="@string/edit_endtime" />
+
+            <EditText
+                android:id="@+id/show_endtime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="time" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textview_magnitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/padding_small"
+            android:text="@string/edit_magnitude"
+            android:textColor="@color/near_white"
+            android:textSize="@dimen/font_medium" />
+
+        <SeekBar
+            android:id="@+id/seekBar_magnitude"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:paddingLeft="@dimen/padding_small"
+            android:paddingRight="@dimen/padding_small" />
+
+        <TextView
+            android:id="@+id/textview_altitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/padding_small"
+            android:text="@string/edit_altitude"
+            android:textColor="@color/near_white"
+            android:textSize="@dimen/font_medium" />
+
+        <SeekBar
+            android:id="@+id/seekBar_altitude"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:max="45"
+            android:paddingLeft="@dimen/padding_small"
+            android:paddingRight="@dimen/padding_small" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <CheckBox
+                android:id="@+id/checkbox_ocl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/checkbox_margin"
+                android:layout_marginRight="@dimen/checkbox_margin"
+                android:text="@string/checkbox_ocl"
+                android:textColor="@color/near_white" />
+
+            <CheckBox
+                android:id="@+id/checkbox_gcl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/checkbox_margin"
+                android:layout_marginRight="@dimen/checkbox_margin"
+                android:text="@string/checkbox_gcl"
+                android:textColor="@color/near_white" />
+
+            <CheckBox
+                android:id="@+id/checkbox_dbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/checkbox_margin"
+                android:layout_marginRight="@dimen/checkbox_margin"
+                android:text="@string/checkbox_dbl"
+                android:textColor="@color/near_white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <CheckBox
+                android:id="@+id/checkbox_brn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/checkbox_margin"
+                android:layout_marginRight="@dimen/checkbox_margin"
+                android:text="@string/checkbox_brn"
+                android:textColor="@color/near_white" />
+
+            <CheckBox
+                android:id="@+id/checkbox_pln"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/checkbox_margin"
+                android:layout_marginRight="@dimen/checkbox_margin"
+                android:text="@string/checkbox_pln"
+                android:textColor="@color/near_white" />
+
+            <CheckBox
+                android:id="@+id/checkbox_glx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/checkbox_margin"
+                android:layout_marginRight="@dimen/checkbox_margin"
+                android:text="@string/checkbox_glx"
+                android:textColor="@color/near_white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:height="@dimen/button_height_medium"
+                android:onClick="onClickLoad"
+                android:text="@string/btn_load_label"
+                android:textSize="@dimen/font_medium"
+                android:width="@dimen/button_width_medium" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:height="@dimen/button_height_medium"
+                android:onClick="onClickGenerate"
+                android:text="@string/btn_generate_label"
+                android:textSize="@dimen/font_medium"
+                android:width="@dimen/button_width_medium" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:height="@dimen/button_height_medium"
+                android:onClick="onClickUpload"
+                android:text="@string/btn_update_label"
+                android:textSize="@dimen/font_small"
+                android:width="@dimen/button_width_medium" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

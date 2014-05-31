@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="image_long_click_event">
+        <item>View Image</item>
+        <item>Save Image</item>
+        <item>Use as Wallpaper</item>
+    </string-array>
+</resources>

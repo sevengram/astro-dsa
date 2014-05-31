@@ -1,0 +1,18 @@
+# Android generated
+bin/
+gen/
+.settings/
+
+# Ant
+local.properties
+
+# Eclipse
+.classpath
+.project
+.externalToolBuilders/
+
+# Temp
+*.tmp
+*~
+*.orig
+*.swp

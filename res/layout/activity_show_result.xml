@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/black"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/listview_result"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@color/dark_grey"
+        android:dividerHeight="1dp"
+        android:fadingEdge="none" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/bottom_bar_height"
+        android:background="@drawable/grain_thin"
+        android:gravity="right"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/button_save_list"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:minWidth="@dimen/button_width_small"
+            android:onClick="saveList"
+            android:text="@string/btn_save_list"
+            android:textSize="@dimen/font_size_3" />
+
+        <Button
+            android:id="@+id/button_remove_list"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:minWidth="@dimen/button_width_small"
+            android:onClick="removeList"
+            android:text="@string/btn_remove_list"
+            android:textSize="@dimen/font_size_3" />
+    </LinearLayout>
+
+</LinearLayout>
