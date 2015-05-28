@@ -380,7 +380,7 @@
                 android:height="@dimen/button_height_medium"
                 android:onClick="onClickGenerate"
                 android:text="@string/btn_generate_label"
-                android:textSize="@dimen/font_medium"
+                android:textSize="@dimen/font_size_2"
                 android:width="@dimen/button_width_medium" />
 
             <Button

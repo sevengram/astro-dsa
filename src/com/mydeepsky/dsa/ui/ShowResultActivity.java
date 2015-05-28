@@ -1,19 +1,3 @@
-/*
- * Deep Sky Assistant for Android
- * Author 2012 Jianxiang FAN <sevengram1991@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- */
-
 package com.mydeepsky.dsa.ui;
 
 import java.io.File;
@@ -61,10 +45,10 @@ public class ShowResultActivity extends Activity {
             findViewById(R.id.button_remove_list).setVisibility(View.GONE);
         }
 
-        List<Map<String, Object>> listItem = new ArrayList<Map<String, Object>>();
+        List<Map<String, Object>> listItem = new ArrayList<>();
 
         for (CelestialObject object : Generator.getInstance().result) {
-            HashMap<String, Object> map = new HashMap<String, Object>();
+            HashMap<String, Object> map = new HashMap<>();
             map.put("ItemTitle", object.showTitle());
             map.put("ItemText", object.showDescription());
             listItem.add(map);
@@ -92,10 +76,9 @@ public class ShowResultActivity extends Activity {
                 .setView(et).setPositiveButton("OK", new OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String message = "";
+                        String message;
                         try {
-                            String filename = Generator.getInstance().saveList(
-                                    et.getText().toString());
+                            String filename = Generator.getInstance().saveList(et.getText().toString());
                             message = "Saved as " + DirManager.getListPath() + File.separatorChar
                                     + filename;
                         } catch (IOException e) {
@@ -110,7 +93,7 @@ public class ShowResultActivity extends Activity {
 
     public void removeList(View view) {
         String filepath = getIntent().getStringExtra(MainActivity.FILENAME);
-        String message = "";
+        String message;
         File file = new File(filepath);
         if (file.exists()) {
             file.delete();

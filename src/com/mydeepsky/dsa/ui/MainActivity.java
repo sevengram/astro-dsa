@@ -1,22 +1,5 @@
 package com.mydeepsky.dsa.ui;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Locale;
-import java.util.TimeZone;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
@@ -32,27 +15,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.SeekBar;
+import android.widget.*;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
-
 import com.mydeepsky.android.location.Locator.LocationInfo;
 import com.mydeepsky.android.location.LocatorActivity;
-import com.mydeepsky.android.task.Task;
 import com.mydeepsky.android.task.Task.OnTaskListener;
-import com.mydeepsky.android.task.TaskCancelEvent;
-import com.mydeepsky.android.task.TaskContext;
-import com.mydeepsky.android.task.TaskFailedEvent;
-import com.mydeepsky.android.task.TaskFinishedEvent;
-import com.mydeepsky.android.task.TaskTimeoutEvent;
+import com.mydeepsky.android.task.*;
 import com.mydeepsky.android.util.ConfigUtil;
 import com.mydeepsky.android.util.DirManager;
 import com.mydeepsky.android.util.Keys;
@@ -61,6 +29,13 @@ import com.mydeepsky.dsa.core.AnswerTask;
 import com.mydeepsky.dsa.core.Generator;
 import com.mydeepsky.dsa.ui.dialog.DialogManager;
 import com.mydeepsky.dsa.ui.dialog.TimeDialogFragment;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.*;
+import java.lang.ref.WeakReference;
+import java.util.*;
 
 public class MainActivity extends LocatorActivity {
     public final static String FILENAME = "com.mydeepsky.ui.MainActivity.FILENAME";
@@ -91,9 +66,6 @@ public class MainActivity extends LocatorActivity {
     private Button pickStartTime;
     private EditText showEndTime;
     private Button pickEndTime;
-
-    private RadioGroup radioGroup_ew;
-    private RadioGroup radioGroup_ns;
 
     private EditText edit_longitude;
     private EditText edit_latitude;
@@ -145,7 +117,7 @@ public class MainActivity extends LocatorActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, Menu.FIRST + 1, 1, "About").setIcon(
-                android.R.drawable.ic_menu_info_details);
+            android.R.drawable.ic_menu_info_details);
         return true;
     }
 
@@ -154,17 +126,17 @@ public class MainActivity extends LocatorActivity {
         String title = "Deep Sky Assistant";
         String message = "Deep Sky Assistant";
         switch (item.getItemId()) {
-        case Menu.FIRST + 1:
-            Dialog dialog = new AlertDialog.Builder(this).setIcon(R.drawable.ic_launcher)
+            case Menu.FIRST + 1:
+                Dialog dialog = new AlertDialog.Builder(this).setIcon(R.drawable.ic_launcher)
                     .setTitle(title).setMessage(message)
                     .setPositiveButton("OK", new OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
                         }
                     }).create();
-            dialog.show();
-            break;
-        default:
-            break;
+                dialog.show();
+                break;
+            default:
+                break;
         }
         return false;
     }
@@ -216,8 +188,8 @@ public class MainActivity extends LocatorActivity {
     /* Update Display */
     private void updateDateDisplay() {
         showDate.setText(new StringBuilder().append(mYear).append("-")
-                .append(mMonth < 10 ? "0" + mMonth : mMonth).append("-")
-                .append((mDay < 10) ? "0" + mDay : mDay));
+            .append(mMonth < 10 ? "0" + mMonth : mMonth).append("-")
+            .append((mDay < 10) ? "0" + mDay : mDay));
     }
 
     private void updateMagnitudeText() {
@@ -238,11 +210,11 @@ public class MainActivity extends LocatorActivity {
         }
 
         showStartTime.setText(new StringBuilder()
-                .append(mStartHour < 10 ? "0" + mStartHour : mStartHour).append(":")
-                .append((mStartMinute < 10) ? "0" + mStartMinute : mStartMinute));
+            .append(mStartHour < 10 ? "0" + mStartHour : mStartHour).append(":")
+            .append((mStartMinute < 10) ? "0" + mStartMinute : mStartMinute));
         showEndTime.setText(new StringBuilder().append(mEndHour < 10 ? "0" + mEndHour : mEndHour)
-                .append(":").append((mEndMinute < 10) ? "0" + mEndMinute : mEndMinute)
-                .append(nextDay));
+            .append(":").append((mEndMinute < 10) ? "0" + mEndMinute : mEndMinute)
+            .append(nextDay));
     }
 
     private void initializeViews() {
@@ -263,8 +235,8 @@ public class MainActivity extends LocatorActivity {
         seekBar_altitude = (SeekBar) findViewById(R.id.seekBar_altitude);
         textView_altitude = (TextView) findViewById(R.id.textview_altitude);
 
-        radioGroup_ew = (RadioGroup) findViewById(R.id.radioGroup_longitude);
-        radioGroup_ns = (RadioGroup) findViewById(R.id.radioGroup_latitude);
+        RadioGroup radioGroupEw = (RadioGroup) findViewById(R.id.radioGroup_longitude);
+        RadioGroup radioGroupNs = (RadioGroup) findViewById(R.id.radioGroup_latitude);
 
         edit_timezone = (EditText) findViewById(R.id.edit_timezone);
 
@@ -295,8 +267,8 @@ public class MainActivity extends LocatorActivity {
             }
         });
 
-        radioGroup_ew.setOnCheckedChangeListener(radioGroupEWListener);
-        radioGroup_ns.setOnCheckedChangeListener(radioGroupNSListener);
+        radioGroupEw.setOnCheckedChangeListener(radioGroupEWListener);
+        radioGroupNs.setOnCheckedChangeListener(radioGroupNSListener);
         seekBar_magnitude.setOnSeekBarChangeListener(seekBarMagnitudeListener);
         seekBar_altitude.setOnSeekBarChangeListener(seekBarAltitudeListener);
         edit_longitude.setOnFocusChangeListener(editLongitudeListener);
@@ -427,7 +399,7 @@ public class MainActivity extends LocatorActivity {
         }
         double latitude = Math.min(Double.parseDouble(latitude_string) * mLatitudeSign, 90.0);
 
-        Collection<String> types = new ArrayList<String>();
+        Collection<String> types = new ArrayList<>();
         if (checkbox_brn.isChecked()) {
             types.add("BRTNB");
             types.add("CL+NB");
@@ -468,12 +440,12 @@ public class MainActivity extends LocatorActivity {
             JSONObject json = new JSONObject();
             JSONObject param = new JSONObject();
             param.put("user", "fjx").put("lat", latitude).put("mag", mMagnitude)
-                    .put("type", new JSONArray(types));
+                .put("type", new JSONArray(types));
             json.put("type", "query").put("param", param);
             taskContext.set(AnswerTask.URL, ConfigUtil.getString(Keys.HTTP_REAL_SERVER));
             taskContext.set(AnswerTask.REQUEST, json.toString().getBytes());
             AnswerTask task = new AnswerTask();
-            task.addTaskListener(new WeakReference<Task.OnTaskListener>(generateTaskListener));
+            task.addTaskListener(new WeakReference<>(generateTaskListener));
             task.execute(taskContext);
         } catch (JSONException e) {
             progressDialog.dismiss();
@@ -532,7 +504,7 @@ public class MainActivity extends LocatorActivity {
                 longitude_string = "0.0";
             }
             double longitude = Math.min(Double.parseDouble(longitude_string) * mLongtitudeSign,
-                    180.0);
+                180.0);
 
             String latitude_string = edit_latitude.getText().toString();
             if (latitude_string.equals("")) {
@@ -551,7 +523,7 @@ public class MainActivity extends LocatorActivity {
             int endTime = mEndHour * 60 + mEndMinute;
 
             Generator.getInstance().setGeoInfo(mYear, mMonth, mDay, longitude, latitude, timezone,
-                    startTime, endTime, mAltitude, mMagnitude);
+                startTime, endTime, mAltitude, mMagnitude);
             Generator.getInstance().readObject(jsonArray);
             Generator.getInstance().generateList();
 
@@ -597,7 +569,7 @@ public class MainActivity extends LocatorActivity {
     }
 
     public void onClickUpload(View view) {
-        final String skylistDir = DirManager.SD_PATH + "/SkySafari Pro/Observing Lists";
+        final String skylistDir = DirManager.SD_PATH + "/SkySafari 4 Pro/Observing Lists";
         File dataPath = new File(skylistDir);
         if (dataPath.exists()) {
             final String[] files = dataPath.list(new FilenameFilter() {
@@ -618,14 +590,13 @@ public class MainActivity extends LocatorActivity {
                         JSONObject param = new JSONObject();
                         JSONArray[] records = readSkylistRecord(skylistDir + "/" + files[which]);
                         param.put("user", "fjx").put("records", records[0])
-                                .put("remains", records[1]);
+                            .put("remains", records[1]);
                         json.put("type", "upload").put("param", param);
                         taskContext.set(AnswerTask.URL, ConfigUtil.getString(Keys.HTTP_REAL_SERVER));
                         taskContext.set(AnswerTask.REQUEST, json.toString().getBytes());
 
                         AnswerTask task = new AnswerTask();
-                        task.addTaskListener(new WeakReference<Task.OnTaskListener>(
-                                uploadTaskListener));
+                        task.addTaskListener(new WeakReference<>(uploadTaskListener));
                         task.execute(taskContext);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -749,29 +720,33 @@ public class MainActivity extends LocatorActivity {
     }
 
     private JSONArray[] readSkylistRecord(String filename) throws IOException, JSONException {
-        String line = null;
+        String line;
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename)));
         JSONArray[] result = new JSONArray[2];
         result[0] = new JSONArray();
         result[1] = new JSONArray();
-        JSONObject item = null;
+        JSONObject item = new JSONObject();
         while ((line = br.readLine()) != null) {
             line = line.trim();
-            if (line.equals("SkyObject=BeginObject")) {
-                item = new JSONObject();
-            } else if (line.equals("EndObject=SkyObject")) {
-                if (item.has("DateObserved")) {
-                    result[0].put(item);
-                } else {
-                    result[1].put(item);
-                }
-            } else {
-                String[] s = line.split("=");
-                if (s[0].equals("ObjectID")) {
-                    item.put("ObjectID", s[1]);
-                } else if (s[0].equals("DateObserved")) {
-                    item.put("DateObserved", s[1]);
-                }
+            switch (line) {
+                case "SkyObject=BeginObject":
+                    item = new JSONObject();
+                    break;
+                case "EndObject=SkyObject":
+                    if (item.has("DateObserved")) {
+                        result[0].put(item);
+                    } else {
+                        result[1].put(item);
+                    }
+                    break;
+                default:
+                    String[] s = line.split("=");
+                    if (s[0].equals("ObjectID")) {
+                        item.put("ObjectID", s[1]);
+                    } else if (s[0].equals("DateObserved")) {
+                        item.put("DateObserved", s[1]);
+                    }
+                    break;
             }
         }
         br.close();
@@ -792,7 +767,7 @@ public class MainActivity extends LocatorActivity {
     @Override
     public void onWithoutService(int error) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

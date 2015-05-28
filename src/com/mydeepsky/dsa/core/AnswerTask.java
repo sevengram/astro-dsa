@@ -54,7 +54,7 @@ public class AnswerTask extends Task {
 
         HttpClient client = new DefaultHttpClient();
         HttpPost postMethod = new HttpPost((String) context.get(URL));
-        HttpResponse response = null;
+        HttpResponse response;
         try {
             postMethod.setEntity(new ByteArrayEntity((byte[]) context.get(REQUEST)));
             response = client.execute(postMethod);
@@ -68,7 +68,7 @@ public class AnswerTask extends Task {
             try {
                 BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity()
                         .getContent()));
-                StringBuffer sb = new StringBuffer();
+                StringBuilder sb = new StringBuilder();
                 String res = br.readLine();
                 while (res != null) {
                     sb.append(res);

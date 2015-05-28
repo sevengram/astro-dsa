@@ -178,7 +178,7 @@ public class CelestialObject {
     public String getNgcWithLine() {
         Matcher m = Pattern.compile("[0-9]").matcher(ngc);
         if (m.find()) {
-            StringBuffer sb = new StringBuffer(ngc);
+            StringBuilder sb = new StringBuilder(ngc);
             sb.insert(m.start(), '_');
             return sb.toString();
         } else {
@@ -201,17 +201,13 @@ public class CelestialObject {
     public String getRaInString() {
         int raHr = (int) this.ra;
         int raMin = (int) ((this.ra - raHr) * 60);
-        String result = String.format("%02d", raHr) + "h " + String.format("%02d", raMin) + "m";
-
-        return result;
+        return String.format("%02d", raHr) + "h " + String.format("%02d", raMin) + "m";
     }
 
     public String getDecInString() {
         int decDeg = (int) this.dec;
         int decMin = Math.abs((int) ((this.dec - decDeg) * 60));
-        String result = String.format("%02d", decDeg) + "° " + String.format("%02d", decMin) + "'";
-
-        return result;
+        return String.format("%02d", decDeg) + "° " + String.format("%02d", decMin) + "'";
     }
 
     public int getDecDeg() {
