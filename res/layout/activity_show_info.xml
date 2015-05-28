@@ -64,21 +64,4 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/bottom_bar_height"
-        android:background="@drawable/grain_thin"
-        android:gravity="right"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/wiki_button"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:minWidth="@dimen/button_width_medium"
-            android:onClick="showWiki"
-            android:text="@string/btn_wiki"
-            android:textSize="@dimen/font_size_2" />
-    </LinearLayout>
-
 </LinearLayout>

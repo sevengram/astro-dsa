@@ -1,12 +1,19 @@
 # Android generated
-bin/
-gen/
-.settings/
+bin
+gen
+dist
+build
+out
+
+# Intellj IDEA
+.idea
+dsa.iml
 
 # Ant
 local.properties
 
 # Eclipse
+.settings
 .classpath
 .project
 .externalToolBuilders/

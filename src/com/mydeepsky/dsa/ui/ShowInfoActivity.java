@@ -56,17 +56,6 @@ public class ShowInfoActivity extends Activity {
         showVisualInfo();
     }
 
-    public void showDescription(View v) {
-    }
-
-    public void showWiki(View v) {
-        Intent intent = new Intent(this.context, WikiWebviewActivity.class);
-        String url = WebUtil.WIKI_URL + object.getNgcWithLine().split("/")[0];
-        intent.putExtra(INFO_MESSAGE, url);
-        startActivity(intent);
-
-    }
-
     private void showBasicInfo() {
         ListView infoView = (ListView) findViewById(R.id.infoView);
 
