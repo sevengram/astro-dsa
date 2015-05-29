@@ -10,6 +10,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ import com.mydeepsky.android.task.Task.OnTaskListener;
 import com.mydeepsky.android.task.*;
 import com.mydeepsky.android.util.ConfigUtil;
 import com.mydeepsky.android.util.DirManager;
+import com.mydeepsky.android.util.EncryptUtil;
 import com.mydeepsky.android.util.Keys;
 import com.mydeepsky.dsa.R;
 import com.mydeepsky.dsa.core.AnswerTask;
@@ -726,13 +728,18 @@ public class MainActivity extends LocatorActivity {
         result[0] = new JSONArray();
         result[1] = new JSONArray();
         JSONObject item = new JSONObject();
+        List<String> numbers = new ArrayList<>();
         while ((line = br.readLine()) != null) {
             line = line.trim();
             switch (line) {
                 case "SkyObject=BeginObject":
                     item = new JSONObject();
+                    numbers.clear();
                     break;
                 case "EndObject=SkyObject":
+                    Collections.sort(numbers);
+                    item.put("ssid",
+                        EncryptUtil.md5(TextUtils.join("", numbers).replace(" ", "").toLowerCase()).toLowerCase());
                     if (item.has("DateObserved")) {
                         result[0].put(item);
                     } else {
@@ -741,10 +748,16 @@ public class MainActivity extends LocatorActivity {
                     break;
                 default:
                     String[] s = line.split("=");
-                    if (s[0].equals("ObjectID")) {
-                        item.put("ObjectID", s[1]);
-                    } else if (s[0].equals("DateObserved")) {
-                        item.put("DateObserved", s[1]);
+                    switch (s[0]) {
+                        case "ObjectID":
+                            item.put("ObjectID", s[1]);
+                            break;
+                        case "DateObserved":
+                            item.put("DateObserved", s[1]);
+                            break;
+                        case "CatalogNumber":
+                            numbers.add(s[1]);
+                            break;
                     }
                     break;
             }
